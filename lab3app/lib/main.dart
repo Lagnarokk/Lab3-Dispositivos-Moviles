@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -13,6 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Lab 3',
       theme: ThemeData(
+        fontFamily: 'NuevaFuente',
         // This is the theme of your application.
         //
         // TRY THIS: Try running your application with "flutter run". You'll see
@@ -137,7 +140,13 @@ class _MyHomePageState extends State<MyHomePage> {
           FloatingActionButton(
             onPressed: _resetCounter,
             tooltip: 'Reset',
-            child: const Icon(Icons.refresh),
+            //child: const Icon(Icons.refresh),
+            child: //SVG
+            SvgPicture.asset(
+              'assets/icons/8666618_eye_icon.svg', 
+              width: 100,
+              height: 100,
+            ),
           ),
 
           FloatingActionButton(

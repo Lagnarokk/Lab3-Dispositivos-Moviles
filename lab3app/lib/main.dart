@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
+import 'Detalle.dart'; 
+import 'ListaDetalle.dart';// Importa la pantalla de detalle
 
 void main() {
   runApp(const MyApp());
@@ -124,7 +125,7 @@ class _MyHomePageState extends State<MyHomePage> {
           FloatingActionButton(
             onPressed: _incrementCounter,
             tooltip: 'Increment',
-            child: const Icon(Icons.add),
+            child: const Icon(Icons.arrow_forward),
           ),
          
           FloatingActionButton(
@@ -149,6 +150,33 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ),
       ],
+
+   floatingActionButton: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: [
+          FloatingActionButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const Detalle()),
+              );
+            },
+            child: const Text('Detalle'),
+          ),
+          const SizedBox(height: 16),
+          FloatingActionButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const ListaDetalle()),
+              );
+            },
+          
+            child: const Text('Lista'),
+          ),
+        ],
+      ),
     );
   }
 }

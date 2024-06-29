@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'Detalle.dart'; 
-import 'ListaDetalle.dart';// Importa la pantalla de detalle
+import 'ListaDetalle.dart'; // Importa la pantalla de detalle
 
 void main() {
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) ;
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,6 @@ class MyApp extends StatelessWidget {
       title: 'Lab 3',
       theme: ThemeData(
         fontFamily: 'NuevaFuente',
-    
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
@@ -26,7 +25,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+  const MyHomePage({Key? key, required this.title});
 
   final String title;
 
@@ -37,18 +36,54 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
+  @override
+  void initState() {
+    super.initState();
+    print('initState: Initializing state');
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    print('didChangeDependencies: Dependencies changed');
+  }
+
+  @override
+  void didUpdateWidget(covariant MyHomePage oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    print('didUpdateWidget: Widget updated');
+  }
+
+  @override
+  void deactivate() {
+    print('deactivate: Widget is being removed from the tree');
+    super.deactivate();
+  }
+
+  @override
+  void dispose() {
+    print('dispose: Disposing state');
+    super.dispose();
+  }
+
+  @override
+  void reassemble() {
+    super.reassemble();
+    print('reassemble: Application is being reassembled during hot reload');
+  }
+
   void _incrementCounter() {
     setState(() {
       _counter++;
     });
   }
-  //restar contador
+
   void _decreaseCounter() {
     setState(() {
       _counter--;
     });
   }
-  //reset contador
+
   void _resetCounter() {
     setState(() {
       _counter = 0;
@@ -56,30 +91,29 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget getResultIcon() {
-    
     if (_counter >= 15) {
       return Column(
-      children: [
-       SvgPicture.asset(
-        'assets/icons/win.svg',
-        width: 24,
-        height: 24,
-      ),
-      const Text(
+        children: [
+          SvgPicture.asset(
+            'assets/icons/win.svg',
+            width: 24,
+            height: 24,
+          ),
+          const Text(
             '¡Victoria!',
             style: TextStyle(color: Colors.green),
-            ),
+          ),
         ],
       );
     } else if (_counter <= 10) {
       return Column(
-      children: [
-         SvgPicture.asset(
-        'assets/icons/skull.svg',
-        width: 24,
-        height: 24,
-      ),
-      const Text(
+        children: [
+          SvgPicture.asset(
+            'assets/icons/skull.svg',
+            width: 24,
+            height: 24,
+          ),
+          const Text(
             'Derrota',
             style: TextStyle(color: Colors.red),
           ),
@@ -92,9 +126,11 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    print('build: Building widget');
+
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.amber, 
+        backgroundColor: Colors.amber,
         title: Text(widget.title),
       ),
       body: Center(
@@ -106,52 +142,44 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             Text(
               '$_counter',
-              style: Theme.of(context).textTheme.headlineLarge,
+              style: Theme.of(context).textTheme.headline4,
             ),
-
             getResultIcon(),
           ],
         ),
       ),
       persistentFooterButtons: [
-         Card(
+        Card(
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-
-
-          FloatingActionButton(
-            onPressed: _incrementCounter,
-            tooltip: 'Increment',
-            child: const Icon(Icons.add),
-          ),
-         
-          FloatingActionButton(
-            onPressed: _resetCounter,
-            tooltip: 'Reset',
-            //child: const Icon(Icons.refresh),
-            child: //SVG
-            SvgPicture.asset(
-              'assets/icons/8666618_eye_icon.svg', 
-              width: 100,
-              height: 100,
-            ),
-          ),
-
-          FloatingActionButton(
-            onPressed: _decreaseCounter,
-            tooltip: 'decrease',
-            child: const Icon(Icons.remove),
-           ),
+                FloatingActionButton(
+                  onPressed: _incrementCounter,
+                  tooltip: 'Increment',
+                  child: const Icon(Icons.add),
+                ),
+                FloatingActionButton(
+                  onPressed: _resetCounter,
+                  tooltip: 'Reset',
+                  child: SvgPicture.asset(
+                    'assets/icons/8666618_eye_icon.svg',
+                    width: 24,
+                    height: 24,
+                  ),
+                ),
+                FloatingActionButton(
+                  onPressed: _decreaseCounter,
+                  tooltip: 'decrease',
+                  child: const Icon(Icons.remove),
+                ),
               ],
             ),
           ),
         ),
       ],
-
-   floatingActionButton: Column(
+      floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
@@ -172,7 +200,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 MaterialPageRoute(builder: (context) => const ListaDetalle()),
               );
             },
-          
             child: const Text('Lista'),
           ),
         ],

@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'Detalle.dart'; 
-import 'ListaDetalle.dart'; // Importa la pantalla de detalle
+import 'Detalle.dart';
+import 'ListaDetalle.dart';
+import 'PantallaSensores.dart';
+import 'PantallaGestos.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) ;
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,13 +21,13 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Lab 3'),
+      home: const MyHomePage(title: 'Lab 8'),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title});
+  const MyHomePage({superkey, required this.title});
 
   final String title;
 
@@ -39,37 +41,37 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
-    print('initState: Initializing state');
+    print('MyHomePage - initState');
   }
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    print('didChangeDependencies: Dependencies changed');
+    print('MyHomePage - didChangeDependencies');
   }
 
   @override
   void didUpdateWidget(covariant MyHomePage oldWidget) {
     super.didUpdateWidget(oldWidget);
-    print('didUpdateWidget: Widget updated');
+    print('MyHomePage - didUpdateWidget');
   }
 
   @override
   void deactivate() {
-    print('deactivate: Widget is being removed from the tree');
+    print('MyHomePage - deactivate');
     super.deactivate();
   }
 
   @override
   void dispose() {
-    print('dispose: Disposing state');
+    print('MyHomePage - dispose');
     super.dispose();
   }
 
   @override
   void reassemble() {
     super.reassemble();
-    print('reassemble: Application is being reassembled during hot reload');
+    print('MyHomePage - reassemble');
   }
 
   void _incrementCounter() {
@@ -126,12 +128,66 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    print('build: Building widget');
+    print('MyHomePage - build');
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.amber,
         title: Text(widget.title),
+      ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.blue,
+              ),
+              child: Text(
+                'Menú',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 24,
+                ),
+              ),
+            ),
+            ListTile(
+              title: Text('Lista Detalle'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const ListaDetalle()),
+                );
+              },
+            ),
+            ListTile(
+              title: Text('Detalle'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Detalle()),
+                );
+              },
+            ),
+            ListTile(
+              title: Text('Sensores'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const PantallaSensores()),
+                );
+              },
+            ),
+            ListTile(
+              title: Text('Gestos'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const PantallaGestos()),
+                );
+              },
+            ),
+          ],
+        ),
       ),
       body: Center(
         child: Column(

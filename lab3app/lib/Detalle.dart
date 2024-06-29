@@ -48,28 +48,36 @@ class _DetalleState extends State<Detalle> {
   @override
   Widget build(BuildContext context) {
     print('Detalle - build');
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Detalle'),
+    return MaterialApp(
+      title: 'Detalle',
+      theme: ThemeData(
+        fontFamily: 'NuevaFuente',
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        useMaterial3: true,
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              '',
-              style: TextStyle(fontSize: 24),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const MyApp()),
-                );
-              },
-              child: const Icon(Icons.arrow_back),
-            ),
-          ],
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('Detalle'),
+        ),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              const Text(
+                '',
+                style: TextStyle(fontSize: 24),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const MyApp()),
+                  );
+                },
+                child: const Icon(Icons.arrow_back),
+              ),
+            ],
+          ),
         ),
       ),
     );
